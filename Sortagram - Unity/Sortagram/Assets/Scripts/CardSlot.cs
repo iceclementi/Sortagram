@@ -24,10 +24,9 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        var draggedObject = eventData.pointerDrag;
-        if (!draggedObject) return;
-        draggedObject.transform.SetParent(transform);
-        draggedObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
-        
+        if (!eventData.pointerDrag.TryGetComponent(out SortCard draggedCard)) return;
+        draggedCard.transform.SetParent(transform);
+        draggedCard.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        draggedCard.isInPlace = true;
     }
 }

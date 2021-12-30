@@ -653,11 +653,11 @@ GameObject:
   - component: {fileID: 720566711}
   - component: {fileID: 720566714}
   - component: {fileID: 720566713}
-  - component: {fileID: 720566712}
   - component: {fileID: 720566716}
   - component: {fileID: 720566715}
   - component: {fileID: 720566717}
   - component: {fileID: 720566718}
+  - component: {fileID: 720566719}
   m_Layer: 5
   m_Name: Card (1)
   m_TagString: Untagged
@@ -684,18 +684,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1014, y: -729}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &720566712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720566710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87107da3e0d0aa946973d4a61ce234b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &720566713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,6 +783,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &720566719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720566710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cb5cd487b238040824c0ec6e98735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &751820605
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,11 +892,11 @@ GameObject:
   - component: {fileID: 818568757}
   - component: {fileID: 818568760}
   - component: {fileID: 818568759}
-  - component: {fileID: 818568758}
   - component: {fileID: 818568762}
   - component: {fileID: 818568761}
   - component: {fileID: 818568763}
   - component: {fileID: 818568764}
+  - component: {fileID: 818568765}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -922,18 +923,6 @@ RectTransform:
   m_AnchoredPosition: {x: 734.2339, y: -729}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &818568758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818568756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87107da3e0d0aa946973d4a61ce234b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &818568759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1022,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &818568765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818568756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cb5cd487b238040824c0ec6e98735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &892474724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,11 +1299,11 @@ GameObject:
   - component: {fileID: 2103370203}
   - component: {fileID: 2103370206}
   - component: {fileID: 2103370205}
-  - component: {fileID: 2103370204}
   - component: {fileID: 2103370208}
   - component: {fileID: 2103370207}
   - component: {fileID: 2103370209}
   - component: {fileID: 2103370210}
+  - component: {fileID: 2103370211}
   m_Layer: 5
   m_Name: Card (2)
   m_TagString: Untagged
@@ -1328,18 +1330,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1307.8011, y: -729}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2103370204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103370202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87107da3e0d0aa946973d4a61ce234b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2103370205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,3 +1429,16 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2103370211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103370202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cb5cd487b238040824c0ec6e98735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
