@@ -44,13 +44,14 @@ public class CardDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        transform.SetParent(parent);
+        transform.SetParent(parentCanvas.transform);
 
         draggedObject.isDragging = true;
         draggedObject.isInPlace = false;
         
         canvasGroup.alpha = dragAlpha;
         canvasGroup.blocksRaycasts = false;
+        canvas.overrideSorting = true;
         canvas.sortingOrder = 2;
     }
     
@@ -65,12 +66,13 @@ public class CardDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-        canvas.sortingOrder = 1;
+        canvas.overrideSorting = false;
+        //canvas.sortingOrder = 1;
 
         if (!draggedObject.isInPlace && !draggedObject.isPending)
         {
             transform.SetParent(parent);
-            transform.position = previousPosition;
+            //transform.position = previousPosition;
         }
 
         //previousPosition = transform.position;

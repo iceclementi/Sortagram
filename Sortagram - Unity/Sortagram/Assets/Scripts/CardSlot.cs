@@ -7,18 +7,15 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(BoxCollider2D))]
 public class CardSlot : MonoBehaviour
 {
-    [Header("Card Slot Settings")]
-    [SerializeField] private Vector2 expandedSlotSize;
-    [SerializeField] private Vector2 contractedSlotSize;
-    
     // Components
+    private CardSlotManager cardSlotManager;
     private CardSlotFormatter cardSlotFormatter;
     private RectTransform rectTransform;
     private BoxCollider2D triggerCollider;
     
     // States to be made private
     public bool isOccupied => transform.childCount > 0;
-    public int occupiedCardId;
+    public int occupiedCardId = -1;
 
     // Properties
     public Vector2 size
@@ -36,21 +33,15 @@ public class CardSlot : MonoBehaviour
     // Events
     private void Awake()
     {
+        cardSlotManager = GetComponentInParent<CardSlotManager>();
         cardSlotFormatter = GetComponent<CardSlotFormatter>();
         rectTransform = GetComponent<RectTransform>();
         triggerCollider = GetComponent<BoxCollider2D>();
     }
-    
-    /*public void OnDrop(PointerEventData eventData)
-    {
-        if (!eventData.pointerDrag.TryGetComponent(out SortCard draggedCard)) return;
-        draggedCard.transform.SetParent(transform);
-        draggedCard.GetComponent<RectTransform>().localPosition = Vector3.zero;
-        draggedCard.isInPlace = true;
-    }*/
 
     public void Expand() => cardSlotFormatter.Expand();
     public void Contract() => cardSlotFormatter.Contract();
+    public void Format(CardSlotFormatter.CardSlotState state) => cardSlotFormatter.FormatCardSlot(state);
 
     public void InsertCard(SortCard card)
     {
@@ -58,5 +49,13 @@ public class CardSlot : MonoBehaviour
         card.transform.SetParent(transform);
         card.GetComponent<RectTransform>().localPosition = Vector3.zero;
         card.isInPlace = true;
+        
+        cardSlotManager.FillSlot(transform.GetSiblingIndex());
+    }
+
+    public void RemoveCard()
+    {
+        occupiedCardId = -1;
+        cardSlotManager.FreeSlot(transform.GetSiblingIndex());
     }
 }

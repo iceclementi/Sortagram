@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,18 +7,25 @@ public class CardSlotFormatter : MonoBehaviour
     [Header("Card Slot Settings")]
     [SerializeField] private Vector2 slotSize;
     [SerializeField] private Vector2 slotTriggerSize;
+    
     [SerializeField] private Vector2 expandedSlotSize;
     [SerializeField] private Vector2 contractedSlotSize;
+    [SerializeField] private Vector2 normalTriggerSize;
+    [SerializeField] private Vector2 singleTriggerSize;
+    [SerializeField] private Vector2 sideTriggerSize;
+    [SerializeField] private float sideTriggerOffset;
 
     [Header("Components")] 
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private BoxCollider2D slotCollider;
 
-    // Properties
-    private bool isFirstSlot => transform.GetSiblingIndex() == 0;
-    private bool isLastSlot => transform.GetSiblingIndex() == transform.parent.childCount - 1;
-    private bool isOnlySlot => transform.parent.childCount == 1;
+    public enum CardSlotState { OCCUPIED, VACANT, FIRST, LAST, ONLY }
     
+    private CardSlot cardSlot;
+
+    // Properties
+   
+
     public Vector2 size
     {
         get => slotSize;
@@ -43,6 +51,11 @@ public class CardSlotFormatter : MonoBehaviour
 
     #endif
 
+    private void Awake()
+    {
+        cardSlot = GetComponent<CardSlot>();
+    }
+
     private void SetSize(Vector2 newSize)
     {
         slotSize = newSize;
@@ -53,6 +66,11 @@ public class CardSlotFormatter : MonoBehaviour
     {
         slotTriggerSize = newTriggerSize;
         slotCollider.size = newTriggerSize;
+    }
+
+    private void SetTriggerOffset(float offset)
+    {
+        slotCollider.offset = new Vector2(offset, slotCollider.offset.y);
     }
     
     public void Expand()
@@ -65,13 +83,70 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(contractedSlotSize);
     }
 
+    public void FormatCardSlot(CardSlotState state)
+    {
+        Debug.Log(transform.parent.childCount);
+
+        switch (state)
+        {
+            case CardSlotState.OCCUPIED:
+                FormatOccupiedCardSlot();
+                break;
+            case CardSlotState.VACANT:
+                FormatVacantCardSlot();
+                break;
+            case CardSlotState.FIRST:
+                FormatFirstCardSlot();
+                break;
+            case CardSlotState.LAST:
+                FormatLastCardSlot();
+                break;
+            case CardSlotState.ONLY:
+                FormatOnlyCardSlot();
+                break;
+            default:
+                FormatVacantCardSlot();
+                break;
+        }
+    }
+
+    private void FormatOnlyCardSlot()
+    {
+        SetSize(contractedSlotSize);
+        SetTriggerSize(singleTriggerSize);
+        SetTriggerOffset(0);
+        Debug.Log("Only");
+    }
+    
     private void FormatFirstCardSlot()
     {
-        
+        SetSize(contractedSlotSize);
+        SetTriggerSize(sideTriggerSize);
+        SetTriggerOffset(-sideTriggerOffset);
+        Debug.Log("First");
     }
 
     private void FormatLastCardSlot()
     {
-        
+        SetSize(contractedSlotSize);
+        SetTriggerSize(sideTriggerSize);
+        SetTriggerOffset(sideTriggerOffset);
+        Debug.Log("Last");
+    }
+
+    private void FormatOccupiedCardSlot()
+    {
+        SetSize(expandedSlotSize);
+        SetTriggerSize(normalTriggerSize);
+        SetTriggerOffset(0);
+        Debug.Log("Occupied");
+    }
+
+    private void FormatVacantCardSlot()
+    {
+        SetSize(contractedSlotSize);
+        SetTriggerSize(normalTriggerSize);
+        SetTriggerOffset(0);
+        Debug.Log("Vacant");
     }
 }
