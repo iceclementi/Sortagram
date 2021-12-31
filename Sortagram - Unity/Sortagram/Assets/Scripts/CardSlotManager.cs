@@ -27,6 +27,11 @@ public class CardSlotManager : MonoBehaviour
         RemoveSlot(index + 1, index - 1);
     }
 
+    public IEnumerable<int> GetOrderedCardIds()
+    {
+        return (from cardSlot in cardSlots where cardSlot.isOccupied select cardSlot.occupiedCardId).AsEnumerable();
+    }
+
     private void AddSlot(params int[] indices)
     {
         foreach (var index in indices)
