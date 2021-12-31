@@ -8,10 +8,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Canvas))]
 [RequireComponent(typeof(GraphicRaycaster))]
 [RequireComponent(typeof(IDraggable))]
-public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     [Header("General Settings")]
     [SerializeField] private Canvas parentCanvas;
+    [SerializeField] private Transform parent;
     
     [Header("Drag Settings")]
     [SerializeField] private float dragAlpha = 0.6f;
@@ -29,8 +30,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponent<Canvas>();
-        
-        
     }
 
     private void Start()
@@ -45,7 +44,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        transform.SetParent(parent);
+
+        draggedObject.isDragging = true;
         draggedObject.isInPlace = false;
+        
         canvasGroup.alpha = dragAlpha;
         canvasGroup.blocksRaycasts = false;
         canvas.sortingOrder = 2;
@@ -58,16 +61,23 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     
     public void OnEndDrag(PointerEventData eventData)
     {
+        draggedObject.isDragging = false;
+        
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         canvas.sortingOrder = 1;
 
-        if (!draggedObject.isInPlace)
+        if (!draggedObject.isInPlace && !draggedObject.isPending)
         {
+            transform.SetParent(parent);
             transform.position = previousPosition;
         }
 
-        previousPosition = transform.position;
-        draggedObject.isInPlace = false;
+        //previousPosition = transform.position;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        //draggedObject.isDragging = false;
     }
 }
