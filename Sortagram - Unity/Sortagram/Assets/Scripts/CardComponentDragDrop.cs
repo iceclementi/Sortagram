@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Canvas))]
 [RequireComponent(typeof(GraphicRaycaster))]
 [RequireComponent(typeof(IDraggable))]
-public class CardDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardComponentDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("General Settings")]
     [SerializeField] private Canvas parentCanvas;
@@ -26,30 +25,25 @@ public class CardDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     
     private void Awake()
     {
+        parentCanvas = SceneManager.instance.parentCanvas;
+        
         draggedObject = GetComponent<IDraggable>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponent<Canvas>();
     }
 
-    private void Start()
-    {
-        previousPosition = transform.position;
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
-        transform.SetParent(parentCanvas.transform);
-
         draggedObject.isDragging = true;
         draggedObject.isInPlace = false;
         
         canvasGroup.alpha = dragAlpha;
-        canvasGroup.blocksRaycasts = false;
+        //canvasGroup.blocksRaycasts = false;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 2;
     }
-    
+
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / parentCanvas.scaleFactor;
@@ -62,14 +56,10 @@ public class CardDragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         canvas.overrideSorting = false;
-        //canvas.sortingOrder = 1;
 
         if (!draggedObject.isInPlace && !draggedObject.isPending)
         {
-            transform.SetParent(parent);
-            //transform.position = previousPosition;
+            Destroy(gameObject);
         }
-
-        //previousPosition = transform.position;
     }
 }

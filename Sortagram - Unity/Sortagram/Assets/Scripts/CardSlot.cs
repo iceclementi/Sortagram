@@ -1,7 +1,4 @@
-using System;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(BoxCollider2D))]
