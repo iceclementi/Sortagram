@@ -39,7 +39,7 @@ public class CardComponentDragDrop : MonoBehaviour, IBeginDragHandler, IDragHand
         draggedObject.isInPlace = false;
         
         canvasGroup.alpha = dragAlpha;
-        //canvasGroup.blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
         canvas.overrideSorting = true;
         canvas.sortingOrder = 2;
     }

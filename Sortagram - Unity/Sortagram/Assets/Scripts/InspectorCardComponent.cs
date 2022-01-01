@@ -24,6 +24,7 @@ public class InspectorCardComponent : MonoBehaviour, IPointerClickHandler, IBegi
             Camera.main, out var localPoint);
         cardComponentIcon.GetComponent<RectTransform>().anchoredPosition = localPoint;
         eventData.pointerDrag = cardComponentIcon.gameObject;
+        cardComponentIcon.GetComponent<CardComponentDragDrop>().OnBeginDrag(eventData);
     }
 
     public void OnDrag(PointerEventData eventData) {}
