@@ -55,7 +55,7 @@ public class CardSlotManager : MonoBehaviour
         FormatCardSlots();
     }
 
-    private void FormatCardSlots()
+    public void FormatCardSlots()
     {
         EnforceAlternate();
         

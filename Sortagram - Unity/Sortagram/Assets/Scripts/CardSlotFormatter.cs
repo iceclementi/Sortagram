@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,12 +19,8 @@ public class CardSlotFormatter : MonoBehaviour
     [SerializeField] private BoxCollider2D slotCollider;
 
     public enum CardSlotState { OCCUPIED, VACANT, FIRST, LAST, ONLY }
-    
-    private CardSlot cardSlot;
 
     // Properties
-   
-
     public Vector2 size
     {
         get => slotSize;
@@ -50,11 +45,6 @@ public class CardSlotFormatter : MonoBehaviour
     }
 
     #endif
-
-    private void Awake()
-    {
-        cardSlot = GetComponent<CardSlot>();
-    }
 
     private void SetSize(Vector2 newSize)
     {
@@ -85,8 +75,6 @@ public class CardSlotFormatter : MonoBehaviour
 
     public void FormatCardSlot(CardSlotState state)
     {
-        Debug.Log(transform.parent.childCount);
-
         switch (state)
         {
             case CardSlotState.OCCUPIED:
@@ -115,7 +103,6 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(contractedSlotSize);
         SetTriggerSize(singleTriggerSize);
         SetTriggerOffset(0);
-        Debug.Log("Only");
     }
     
     private void FormatFirstCardSlot()
@@ -123,7 +110,6 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(contractedSlotSize);
         SetTriggerSize(sideTriggerSize);
         SetTriggerOffset(-sideTriggerOffset);
-        Debug.Log("First");
     }
 
     private void FormatLastCardSlot()
@@ -131,7 +117,6 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(contractedSlotSize);
         SetTriggerSize(sideTriggerSize);
         SetTriggerOffset(sideTriggerOffset);
-        Debug.Log("Last");
     }
 
     private void FormatOccupiedCardSlot()
@@ -139,7 +124,6 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(expandedSlotSize);
         SetTriggerSize(normalTriggerSize);
         SetTriggerOffset(0);
-        Debug.Log("Occupied");
     }
 
     private void FormatVacantCardSlot()
@@ -147,6 +131,5 @@ public class CardSlotFormatter : MonoBehaviour
         SetSize(contractedSlotSize);
         SetTriggerSize(normalTriggerSize);
         SetTriggerOffset(0);
-        Debug.Log("Vacant");
     }
 }

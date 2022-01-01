@@ -5,7 +5,6 @@ using UnityEngine;
 public class CardSlotSensor : MonoBehaviour
 {
     public bool printEnterCollisions;
-    public bool printStayCollisions;
     public bool printExitCollisions;
     
     private CardSlot cardSlot;
@@ -22,13 +21,17 @@ public class CardSlotSensor : MonoBehaviour
 
     private void Update()
     {
+        // Edge case
+        if (isOccupied && !cardSlot.isOccupied && !isPending)
+        {
+            cardSlot.FormatAll();
+        }
+        
         if (cardSlot.isOccupied || !isPending) return;
         card.isPending = true;
         
         if (isOccupied)
         {
-            Debug.Log("Releasing");
-            
             cardSlot.RemoveCard();
             cardSlot.Expand();
             
@@ -36,7 +39,6 @@ public class CardSlotSensor : MonoBehaviour
             isOccupied = false;
             isPending = true;
         }
-        
         else if (!card.isDragging)
         {
             cardSlot.InsertCard(card);
@@ -60,11 +62,6 @@ public class CardSlotSensor : MonoBehaviour
         cardSlot.Expand();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        // isPending = true;
-    }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (printExitCollisions)
@@ -73,9 +70,9 @@ public class CardSlotSensor : MonoBehaviour
         }
         
         if (!other.TryGetComponent(out SortCard exitedCard)) return;
-        isPending = false;
         card = null;
         exitedCard.isPending = false;
+        isPending = false;
 
         if (cardSlot.isOccupied)
         {
