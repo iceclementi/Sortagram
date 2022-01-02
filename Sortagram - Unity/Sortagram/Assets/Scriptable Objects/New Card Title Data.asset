@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992f885b9a110d14a90bcd594660f289, type: 3}
+  m_Name: New Card Title Data
+  m_EditorClassIdentifier: 
+  id: 0
+  title: 
+  fontName: 0
+  fontSize: 0
+  fontColor: 0
+  alignment: 0
+  bolded: 0
+  italicised: 0
+  underlined: 0
+  autoSized: 0
+  width: 0
+  height: 0
+  topPadding: 0
+  bottomPadding: 0
+  leftPadding: 0
+  rightPadding: 0
