@@ -41,16 +41,25 @@ namespace Card_Editor
         {
             var removedComponent = GetCardComponentAtIndex(ActiveCardComponentIndex);
             cardComponents.Remove(removedComponent);
-            Destroy(removedComponent.gameObject);
 
             if (ComponentCount > 0)
             {
-                FocusComponent(GetCardComponentAtIndex(ActiveCardComponentIndex - 1));
+                if (ActiveCardComponentIndex < ComponentCount)
+                {
+                    FocusComponent(GetCardComponentAtIndex(ActiveCardComponentIndex + 1));
+                    ActiveCardComponentIndex -= 1;
+                }
+                else
+                {
+                    FocusComponent(GetCardComponentAtIndex(ActiveCardComponentIndex - 1));
+                }
             }
             else
             {
                 ShowAddNewComponentOverlay();
             }
+            
+            Destroy(removedComponent.gameObject);
         }
 
         public void FocusComponent(CardComponent focussedCardComponent)

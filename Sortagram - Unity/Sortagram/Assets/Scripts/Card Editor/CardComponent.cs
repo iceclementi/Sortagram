@@ -1,14 +1,23 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Card_Editor
 {
+    [RequireComponent(typeof(DropShadow))]
     public abstract class CardComponent : MonoBehaviour, IPointerClickHandler
     {
+        [SerializeField] private Color highlightColor;
+        
         public enum CardComponentType { NONE, TITLE, TEXT_BOX, IMAGE, DIVIDER }
 
         protected CardEditorManager cardEditor;
+        private DropShadow highlightEffect;
+
+        private void Awake()
+        {
+            highlightEffect = GetComponent<DropShadow>();
+            highlightEffect.enabled = false;
+        }
 
         private void Start()
         {
@@ -22,12 +31,12 @@ namespace Card_Editor
 
         public void Focus()
         {
-            // Add highlight
+            highlightEffect.enabled = true;
         }
 
         public void Unfocus()
         {
-            // Remove highlight
+            highlightEffect.enabled = false;
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8983341425670484983}
   - component: {fileID: 8983341425670484872}
   - component: {fileID: -1098275252725772400}
+  - component: {fileID: 8736307795717889384}
   m_Layer: 5
   m_Name: Card Title Component
   m_TagString: Untagged
@@ -36,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8983341425670484983
 CanvasRenderer:
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.5019608}
+  m_Color: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,3 +89,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f26313b8ef8cf48b8bc145219e84ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &8736307795717889384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983341425670484874}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbedc9031fd1be94a8eb2e32211ed642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowColor: {r: 0.34117648, g: 0.5176471, b: 0.7254902, a: 0.5}
+  shadowDistance: {x: 0, y: -3}
+  useGraphicAlpha: 1
+  iterations: 10
+  shadowSpread: {x: 3, y: 3}
