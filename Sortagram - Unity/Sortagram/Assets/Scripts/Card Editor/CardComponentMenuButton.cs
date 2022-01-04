@@ -12,5 +12,15 @@ namespace Card_Editor
         {
             cardEditor.AddNewComponent(cardComponentType);
         }
+
+        public void EditComponent()
+        {
+            
+        }
+
+        public void DeleteComponent()
+        {
+            cardEditor.RemoveComponent();
+        }
     }
 }

@@ -15,14 +15,15 @@ namespace Card_Editor
         [Header("Card Component Prefabs")] 
         [SerializeField] private CardTitleComponent cardTitleComponentObject;
 
-        private List<CardComponent> cardComponents = new List<CardComponent>();
+        private readonly List<CardComponent> cardComponents = new List<CardComponent>();
 
-        public int ActiveCardComponentIndex { get; set; } = -1;
+        private int ActiveCardComponentIndex { get; set; } = -1;
         private int ComponentCount => cardComponents.Count;
         
         private void Start()
         {
-            UpdateFormatting();
+            if (ComponentCount > 0) HideAddNewComponentOverlay();
+            else ShowAddNewComponentOverlay();
         }
 
         public void AddNewComponent(CardComponentType componentType)
@@ -32,6 +33,8 @@ namespace Card_Editor
             cardComponent.transform.SetSiblingIndex(ActiveCardComponentIndex + 1);
             
             FocusComponent(cardComponent);
+            
+            if (ComponentCount == 1) HideAddNewComponentOverlay();
         }
 
         public void RemoveComponent()
@@ -77,6 +80,12 @@ namespace Card_Editor
             componentMenu.SetActive(false);
 
             ActiveCardComponentIndex = -1;
+        }
+
+        private void HideAddNewComponentOverlay()
+        {
+            addNewComponentOverlay.SetActive(false);
+            componentMenu.SetActive(true);
         }
     }
 }
