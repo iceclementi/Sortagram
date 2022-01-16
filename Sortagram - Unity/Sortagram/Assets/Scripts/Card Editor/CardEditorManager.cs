@@ -62,6 +62,11 @@ namespace Card_Editor
             Destroy(removedComponent.gameObject);
         }
 
+        public void EditComponent()
+        {
+            
+        }
+
         public void FocusComponent(CardComponent focussedCardComponent)
         {
             foreach (var cardComponent in cardComponents)

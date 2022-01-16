@@ -15,7 +15,7 @@ namespace Card_Editor
 
         public void EditComponent()
         {
-            
+            cardEditor.EditComponent();
         }
 
         public void DeleteComponent()

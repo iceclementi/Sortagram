@@ -1,3 +1,4 @@
+using Scriptable_Objects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +10,9 @@ namespace Card_Editor
         [SerializeField] private Color highlightColor;
         
         public enum CardComponentType { NONE, TITLE, TEXT_BOX, IMAGE, DIVIDER }
-
+        
+        public CardComponentType Type { get; protected set; }
+        public abstract CardComponentData Data { get; }
         protected CardEditorManager cardEditor;
         private DropShadow highlightEffect;
 
