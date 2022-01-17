@@ -8,7 +8,7 @@ public class EditorFormatManager : MonoBehaviour
     [SerializeField] private FontColorMapper[] fontColors;
     
     public enum FontName { ARIAL }
-    public enum FontSize { XS, S, M, L, XL }
+    public enum FontSize { XS, S, M, L, XL, AUTO }
     public enum FontColor { RED, ORANGE, BLUE, GREY, BLACK }
     public enum Alignment { LEFT, CENTER, RIGHT, JUSTIFY }
     public enum ImageMode { FIT, STRETCH, TRUNCATE }

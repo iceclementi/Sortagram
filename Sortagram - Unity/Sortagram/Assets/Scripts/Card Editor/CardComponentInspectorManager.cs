@@ -9,7 +9,8 @@ namespace Card_Editor
     {
         [SerializeField] private CardComponentInspectorMapper[] cardComponentInspectors;
 
-        private Dictionary<CardComponentType, CardComponentInspector> inspectors;
+        private readonly Dictionary<CardComponentType, CardComponentInspector> inspectors =
+            new Dictionary<CardComponentType, CardComponentInspector>();
         private CardComponentInspector activeInspector;
 
         private void Start()
